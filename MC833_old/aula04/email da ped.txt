@@ -1,0 +1,37 @@
+Bom dia,
+
+Pessoal, este e-mail é direcionado a algumas dúvidas que vocês tiveram nas últimas aulas.
+
+1) Como imprimir o IP e porta sem utilizar getpeername() ? R: Utilizem a função do exemplo a baixo:
+//Para impressão da porta
+int port = (int) ntohs(...)
+...
+//para impressão do IP
+ inet_ntop(...);
+ ip = inet_ntoa(clientaddr.sin_addr);
+...
+
+2) Como utilizar a função system()? R: o trecho a baixo tem um exemplo, lembrm que irei testar comandos como o top então o system ele requer tratamento :)
+if((result = system(command)) == -1) {
+      perror("system error");
+}
+
+3) Como utilizar a função execl? R: o trecho a baixo tem um exemplo
+Exemplo 1:
+ execl("/bin/date", "date", 0, 0);
+ ...perror("execl() falhou!\n\n");
+Exemplo 2:
+  execl("/bin/ls", "ls", "-l", 0); 
+Link para outro exemplo: https://www.gnu.org/software/libc/manual/html_node/Process-Creation-Example.html
+Este comando ajudará vocês em relação a funções como o top
+
+4) Como enviar o mesmo comando para todos os clientes?
+R: Como vocês não conseguem enviar de um-para-todos por ser TCP, vocês podem utilizar aquele mesmo arquivo de log que pede no exercício onde vocês guardam as informações dos clientes para iterar sobre ele e enviar o comando digitado para todos os demais. Fluxo: 1- servidor digita o comando, 2- Abre arquivo com os logs, 3- itera sobre cada cliente conectado enviando o comando.
+
+5) Qual o fluxo do código? R: A partir da pg. 113 do livro (terceira edição que tem na biblioteca) tem um exemplo servidor concorrente examente com o mesmo fluxo que voês devem seguir e até descrição da função exec 
+
+Não irei responder estas perguntas novamente por e-mail, pois é responsabilidade de vocês acompanharem todos os e-mails da universidade.  Em caso de dúvidas o atendimento é das 18h às 19h na sala 303 as quartas-feira. 
+ 
+Atenciosamente,
+Silvana Trindade
+

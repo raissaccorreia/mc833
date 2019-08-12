@@ -1,0 +1,309 @@
+Para 10/09.
+
+ping: informa se um host na internet está alcançável ou não. Também fornece informações a respeito do tempo de ida e volta de um pacote (round-trip-time - RTT). Ele envia e recebe pacotes com mensagens do protocolo da camada de rede ICMP.
+
+1) Através da execução do comando ping -c 5 seguido dos parâmetros adequados, responda às seguintes questões:
+
+1.1) Qual a função do parâmetro -c? Quais foram os tempos de ida e volta mínimo, médio e máximo obtidos da sua máquina para o site da Google (www.google.com) e para o site Unicamp (www.unicamp.br)?
+R:        -c count
+              Stop  after  sending  count  ECHO_REQUEST packets. With deadline
+              option, ping waits for count ECHO_REPLY packets, until the time-
+              out expires.
+-Google:
+    5 packets transmitted, 5 received, 0% packet loss, time 4005ms
+    rtt min/avg/max/mdev = 13.206/13.318/13.472/0.115 ms
+
+-Unicamp:
+    5 packets transmitted, 5 received, 0% packet loss, time 4027ms
+    rtt min/avg/max/mdev = 0.764/0.989/1.506/0.272 ms
+
+
+1.2) Ocorreu alguma diferença em relação aos tempos de ida e volta entre os sites do exercício anterior? Explique.
+R: Os tempos para o site www.unicamp.br foram menores. TODO: explicar
+
+1.3) Utilize o parâmetro -s para indicar a quantidade de bytes enviados de 496 bytes. Ocorreu alguma alteração em relação a saída do exercício anterior? Explique.
+R:
+-Google:
+    5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+    rtt min/avg/max/mdev = 13.290/13.408/13.493/0.163 ms
+
+-Unicamp:
+    5 packets transmitted, 5 received, 0% packet loss, time 4005ms
+    rtt min/avg/max/mdev = 0.905/1.027/1.421/0.197 ms
+
+TODO: explicar
+
+
+1.4) O host www.lrc.ic.unicamp.br é alcançável pelo ping? Verifique se é possível acessar o site contido neste host através do navegador (http://www.lrc.ic.unicamp.br). A partir do observado você considera que o ping, isoladamente, pode ser considerado como uma ferramenta para verificar a disponibilidade de um host na internet?
+R:  Não é alcançável pelo ping (5 packets transmitted, 0 received, 100% packet loss, time 4077ms).
+    É possível acessar pelo navegador.
+
+    TODO: a partir do observado...
+
+
+
+ifconfig: fornece e configura dados a cerca da configuração de rede do computador.
+
+2) Através da execução do comando ifconfig, responda às seguintes questões: quais os endereços IP da sua estação de trabalho? Quais interfaces de rede a sua estação possui? Quantos bytes foram enviados e quantos bytes foram recebidos por cada interface?
+R:
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 0.0.0.0
+        ether 02:42:1f:38:1c:97  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eno1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 143.106.16.51  netmask 255.255.255.192  broadcast 143.106.16.63
+        inet6 fe80::fab1:56ff:fefc:fb7f  prefixlen 64  scopeid 0x20<link>
+        ether f8:b1:56:fc:fb:7f  txqueuelen 1000  (Ethernet)
+        RX packets 1484785  bytes 1225974751 (1.1 GiB)
+        RX errors 8  dropped 0  overruns 0  frame 4
+        TX packets 813161  bytes 452332331 (431.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 20  memory 0xf7c00000-f7c20000
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 2  bytes 140 (140.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2  bytes 140 (140.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:c7:84:7d  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1  bytes 120 (120.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+route: fornece e configura dados a cerca da configuração do roteamento no computador.
+
+3) Execute o comando route. Quantas rotas estão definidas na estação? Qual é a interface de rede padrão para a qual os pacotes seguem?
+R:
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 eno1
+143.106.16.0    0.0.0.0         255.255.255.192 U     0      0        0 eno1
+link-local      0.0.0.0         255.255.0.0     U     1002   0        0 eno1
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+
+route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         143.106.16.62   0.0.0.0         UG    0      0        0 eno1
+143.106.16.0    0.0.0.0         255.255.255.192 U     0      0        0 eno1
+169.254.0.0     0.0.0.0         255.255.0.0     U     1002   0        0 eno1
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+
+
+
+nslookup: fornece informações a respeito da resolução de nomes na internet. Ele envia e recebe pacotes com mensagens do protocolo da camada de aplicação DNS.
+
+4) Através da execução do comando nslookup seguido dos parâmetros adequados, responda às seguintes questões:
+
+4.1) Quais os endereços IP do host www.facebook.com? Há alguma vantagem em haver mais de um endereço IP? Qual é o servidor DNS configurado na sua estação?
+R:
+Server:		143.106.16.144
+Address:	143.106.16.144#53
+
+Non-authoritative answer:
+www.facebook.com	canonical name = star-z-mini.c10r.facebook.com.
+Name:	star-z-mini.c10r.facebook.com
+Address: 31.13.85.38
+Name:	star-z-mini.c10r.facebook.com
+Address: 2a03:2880:f105:86:face:b00c:0:50fb
+
+Vantagem: Menor chance de falha da conexão seja por DNS, pelo protocolo tcp, além de ter um maior paralelismo por permitir multiplas conexões e uso de multiplas portas.
+Qual é o servidor DNS configurado na sua estação? TO DO ******
+
+4.2) Qual o nome relacionado com o endereço IP 127.0.0.1? O que há de especial neste endereço?
+R: 1.0.0.127.in-addr.arpa	name = localhost.
+Esse endereço é uma forma de usar a própria maquina como servidor no desenvolvimento de aplicação de back-end. Entre outros usos de teste de aplicações web e sua interação com o servidor.
+
+traceroute: fornece informações a respeito da rota entre dois hosts na internet. Ele interpreta pacotes com mensagens do protocolo da camada de rede ICMP.
+
+5) Através da execução do comando traceroute seguido dos parâmetros adequados, responda às seguintes questões:
+
+5.1) Quantos roteadores estão entre a sua estação e o host www.ethz.ch? É possível identificar os roteadores que estão localizados no Brasil? Se sim, indique quais são estes.
+R:
+traceroute to www.ethz.ch (129.132.19.216), 30 hops max, 60 byte packets
+ 1  gateway (143.106.16.62)  0.784 ms  0.752 ms  0.978 ms
+ 2  172.16.10.253 (172.16.10.253)  0.680 ms  0.688 ms  0.914 ms
+ 3  area3-gw.unicamp.br (143.106.1.129)  0.597 ms  0.591 ms  0.582 ms
+ 4  ptp-ncc-nbs.unicamp.br (143.106.199.9)  0.535 ms *  0.503 ms
+ 5  * * *
+ 6  sp-sp2.bkb.rnp.br (200.143.253.37)  2.529 ms  2.639 ms  2.617 ms
+ 7  br-rnp.redclara.net (200.0.204.213)  3.577 ms  3.536 ms  4.161 ms
+ 8  us-br.redclara.net (200.0.204.9)  118.693 ms  118.647 ms  118.636 ms
+ 9  redclara-gw.par.fr.geant.net (62.40.125.168)  219.270 ms  220.099 ms  220.088 ms
+10  ae2.mx1.gen.ch.geant.net (62.40.98.153)  226.238 ms  226.212 ms  226.188 ms
+11  swice1-100ge-0-3-0-1.switch.ch (62.40.124.22)  226.612 ms  226.640 ms  226.593 ms
+12  swiCE4-100GE-0-0-0-0.switch.ch (130.59.36.6)  226.534 ms  226.924 ms  226.878 ms
+13  swiZH1-100GE-0-1-0-1.switch.ch (130.59.36.94)  230.999 ms  230.488 ms  231.219 ms
+14  swiEZ3-100GE-0-1-0-4.switch.ch (130.59.38.109)  229.982 ms  229.888 ms  229.902 ms
+15  rou-gw-lee-tengig-to-switch.ethz.ch (192.33.92.1)  231.055 ms  230.273 ms  230.252 ms
+16  rou-fw-rz-rz-gw.ethz.ch (192.33.92.169)  231.001 ms  230.506 ms  230.430 ms
+17  * * *
+
+Sim, é possível inferir quais estão no Brasil pelo próprio tempo de latência da conexão, uma consequênia principalmente da distância, e a velocidade de propagação do sinal. Portanto, os 4 primeiros são do Brasil.
+
+
+5.2) Quantos roteadores estão entre a sua estação e o host www.cam.ac.uk? Quantos roteadores são comuns entre esta rota e a rota da questão anterior?
+R:
+traceroute to www.cam.ac.uk (131.111.150.25), 30 hops max, 60 byte packets
+ 1  gateway (143.106.16.62)  0.583 ms  2.570 ms  0.958 ms
+ 2  172.16.10.253 (172.16.10.253)  2.532 ms  0.892 ms  0.879 ms
+ 3  area3-gw.unicamp.br (143.106.1.129)  3.733 ms  3.976 ms  3.963 ms
+ 4  ptp-ncc-nbs.unicamp.br (143.106.199.9)  3.064 ms ptp-nct-nbs.unicamp.br (143.106.199.13)  7.815 ms  7.805 ms
+ 5  * * *
+ 6  sp-sp2.bkb.rnp.br (200.143.253.37)  2.860 ms  2.255 ms  3.557 ms
+ 7  br-rnp.redclara.net (200.0.204.213)  3.488 ms  3.496 ms  3.448 ms
+ 8  us-br.redclara.net (200.0.204.9)  118.618 ms  118.110 ms  118.059 ms
+ 9  redclara-gw.par.fr.geant.net (62.40.125.168)  219.832 ms  219.182 ms  219.131 ms
+10  ae1.mx1.lon2.uk.geant.net (62.40.98.76)  222.560 ms  222.487 ms  222.453 ms
+11  ae3.mx1.lon.uk.geant.net.geant.net (62.40.98.78)  222.393 ms  222.788 ms  222.741 ms
+12  janet-gw.mx1.lon.uk.geant.net (62.40.124.198)  222.669 ms  222.357 ms  222.786 ms
+13  ae28.lowdss-sbr1.ja.net (146.97.33.18)  225.738 ms  225.634 ms  225.569 ms
+14  146.97.38.10 (146.97.38.10)  227.043 ms  227.136 ms  226.986 ms
+15  146.97.65.106 (146.97.65.106)  228.490 ms  228.131 ms  228.115 ms
+16  University-of-Cambridge.cambab-rbr1.eastern.ja.net (146.97.130.2)  228.469 ms  228.414 ms  228.042 ms
+17  d-dw.s-dw.net.cam.ac.uk (193.60.88.2)  229.493 ms  229.742 ms  229.732 ms
+18  d-dw.s-dw.net.cam.ac.uk (193.60.88.2)  229.166 ms  229.383 ms  229.147 ms
+19  s-dr.f-sv-net.net.cam.ac.uk (128.232.128.6)  228.762 ms  229.091 ms  228.624 ms
+20  f-sv-net.f-sv-uis.net.cam.ac.uk (128.232.128.10)  228.164 ms  228.863 ms  228.086 ms
+21  primary.admin.cam.ac.uk (131.111.150.25)  229.922 ms  229.494 ms  229.409 ms
+
+Os roteadores em comum são os nove primeiros.
+
+netstat: fornece informações sobre as conexões ativas na estação.
+
+6) Através da execução do comando netstat, seguido dos parâmetros adequados para seleção de conexões TCP e UDP, responda às seguintes questões:
+
+6.1) Acesse o site da Unicamp e, em paralelo em um terminal, verifique a saída do comando netstat. Quais são as informações fornecidas a respeito da conexão ao site da Unicamp?
+R:
+tcp        0      0 fred.lab.ic.unica:34576 cerejeira.unicamp.:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:51118 104.20.110.39:https     ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:37408 104.19.198.151:https    ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:37918 gru10s10-in-f14.1:https TIME_WAIT
+tcp        0      0 fred.lab.ic.unica:34584 cerejeira.unicamp.:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:39250 gru10s11-in-f14.1e:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unicamp:842 cebolinha.lab.ic.un:nfs ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:56778 ec2-34-209-211-16:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:34574 cerejeira.unicamp.:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:40518 gru09s19-in-f100.:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:39226 gru10s11-in-f14.1e:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:45890 gru10s11-in-f3.1e:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:43630 cerejeira.unicamp:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:41804 gru10s11-in-f10.1:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:39224 gru10s11-in-f14.1e:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:37398 104.19.198.151:https    ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:56780 ec2-34-209-211-16:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:51198 gru10s11-in-f1.1e:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:44258 gru10s11-in-f14.1:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:34578 cerejeira.unicamp.:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:41780 gru10s11-in-f10.1:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:53100 mingau.lab.ic.unic:ldap ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:45862 gru10s11-in-f3.1e:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:39778 104.18.20.226:http      ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:44302 gru10s11-in-f14.1:https TIME_WAIT
+tcp        0      0 fred.lab.ic.unica:44256 gru10s11-in-f14.1:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:58744 gru10s11-in-f6.1e:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:54336 gru06s30-in-f162.:https ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:39252 gru10s11-in-f14.1e:http ESTABLISHED
+tcp        0      0 fred.lab.ic.unicamp:877 franjinha.lab.ic.un:nfs ESTABLISHED
+tcp        0      0 fred.lab.ic.unica:54366 gru06s30-in-f162.:https ESTABLISHED
+
+netstat -anp
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:46929           0.0.0.0:*               LISTEN      -
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -
+tcp        0      0 143.106.16.51:51118     104.20.110.39:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:37408     104.19.198.151:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39250     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:842       143.106.16.147:2049     ESTABLISHED -
+tcp        0      0 143.106.16.51:40518     172.217.29.100:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39226     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:45890     216.58.202.67:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:41804     216.58.202.74:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39224     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:37398     104.19.198.151:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:51198     216.58.202.65:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:44258     216.58.202.78:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:41780     216.58.202.74:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:53100     143.106.16.161:389      ESTABLISHED -
+tcp        0      0 143.106.16.51:45862     216.58.202.67:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:44256     216.58.202.78:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:58744     216.58.202.70:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:54336     216.58.202.162:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39252     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:877       143.106.16.135:2049     ESTABLISHED -
+tcp        0      0 143.106.16.51:54366     216.58.202.162:443      ESTABLISHED 9904/firefox
+tcp6       0      0 :::111                  :::*                    LISTEN      -
+tcp6       0      0 :::58709                :::*                    LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 ::1:631                 :::*                    LISTEN      -
+udp        0      0 192.168.122.1:53        0.0.0.0:*                           -
+udp        0      0 0.0.0.0:67              0.0.0.0:*                           -
+udp      768      0 0.0.0.0:111             0.0.0.0:*                           -
+udp        0      0 0.0.0.0:49302           0.0.0.0:*                           -
+udp        0      0 127.0.0.1:323           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:796             0.0.0.0:*                           -
+udp        0      0 127.0.0.1:797           0.0.0.0:*                           -
+udp    30848      0 0.0.0.0:5353            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:55584           0.0.0.0:*                           -
+udp6       0      0 :::45140                :::*                                -
+udp6       0      0 :::111                  :::*                                -
+udp6       0      0 ::1:323                 :::*                                -
+udp6       0      0 :::796                  :::*                                -
+udp6   10816      0 :::5353                 :::*                                -
+udp6       0      0 :::38661                :::*                                -
+
+TODO: infos?
+
+6.2) Além da conexão estabelecida com o site da Unicamp, há mais alguma conexão TCP exibida pelo netstat? Caso haja, informe para cada uma os endereços e portas de origem e destino?
+
+Conforme averiguamos com o comando no netstat no terminal, tais conexões são endereços de fora da rede UNICAMP.
+
+tcp        0      0 143.106.16.51:51118     104.20.110.39:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:37408     104.19.198.151:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39250     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:842       143.106.16.147:2049     ESTABLISHED -
+tcp        0      0 143.106.16.51:40518     172.217.29.100:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39226     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:45890     216.58.202.67:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:41804     216.58.202.74:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39224     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:37398     104.19.198.151:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:51198     216.58.202.65:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:44258     216.58.202.78:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:41780     216.58.202.74:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:53100     143.106.16.161:389      ESTABLISHED -
+tcp        0      0 143.106.16.51:45862     216.58.202.67:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:44256     216.58.202.78:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:58744     216.58.202.70:443       ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:54336     216.58.202.162:443      ESTABLISHED 9904/firefox
+tcp        0      0 143.106.16.51:39252     216.58.202.78:80        TIME_WAIT   -
+tcp        0      0 143.106.16.51:877       143.106.16.135:2049     ESTABLISHED -
+tcp        0      0 143.106.16.51:54366     216.58.202.162:443      ESTABLISHED 9904/firefox
+
+telnet: conecta em um host de forma a permitir uma comunicação interativa. Através dele é possível enviar comandos para um servidor e obter as suas respostas, desde que o serviço acessado utilize o protocolo TCP. Por padrão, ele envia e recebe pacotes com mensagens do protocolo da camada de aplicação TELNET.
+
+7) Através da execução do comando telnet, seguido dos parâmetros adequados, responda às seguintes questões:
+
+7.1) É possível conectar-se com este comando em um servidor HTTP? Explique.
+R: Sim. O protocolo HTTP reside na camada de aplicação, logo qualquer servidor apto a uma conexão tcp será capaz de ser conectado através do comando telnet, dada a descrição no enunciado e na bibliografia do curso.
+
+7.2) Se a resposta da questão anterior for afirmativa encontre o endereço IP de um servidor Telnet para conectar-se, e faça com que o servidor envie uma resposta HTTP.
+R: 

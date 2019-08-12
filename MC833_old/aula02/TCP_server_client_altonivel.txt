@@ -1,0 +1,24 @@
+Descrição de alto nivel de servidor TCP
+
+
+Criar Socket com o dominio de internet, o stream socket e especificando o protocolo TCP
+Configurar a estrutura de endereço do servidor
+- AF_INET
+- Numero de porta e endereço IP de origem, numero de porta e endereço IP de destino
+
+Inserir essa estrutura no Socket
+Função Listen no Socket com um determinado numero de tentativas esperando a requisição do cliente
+
+Ao completar a requisição inicial criar novo socket para esta conexão
+Mandar mensagem indicando que a conexão foi bem sucedida
+
+
+Descrição de alto nivel de cliente TCP
+
+
+Criar o socket com os 3 argumentos: dominio de internet, socket stream e o protocolo TCP
+Configurar os endereços e portas: endereço IP de origem e destino, porta de origem e destino
+Chamar função para inserir tal configuração no socket
+
+Ler a mensagem do servidor no buffer indicando que a conexão foi bem sucedida
+Imprimir a mensagem recebida

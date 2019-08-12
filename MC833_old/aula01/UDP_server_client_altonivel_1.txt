@@ -1,0 +1,25 @@
+Raissa Cavalcante Correia - 150619
+
+Descrição de alto nivel de servidor UDP
+
+1) Criação do socket UDP
+2) Configurar a estrutura de endereço com o AF_INET(igual do tcp aqui), endereço de origem e destino, porta de origem e destino
+3) Acoplar tais informações ao socket, função bind
+4) Inicializa variavel contendo o espaço de armazenamento do servidor
+5) Em um loop tentar receber datagramas UDP do cliente
+5.1) Endereço e porta do cliente que requisitou será armazenado na variavel mencionada acima
+5.2) A mensagem é convertida para uppercase, e enviada de volta para o cliente usando a variavel como endereço
+
+
+Descrição de alto nivel de cliente UDP
+
+1) Criar socket UDP
+2) Configurar a estrutura de endereço com os 2 endereço e portas, origem e destino
+3) Inicializa variavel do tamanho do endereço do servidor
+4) Em um loop
+4.1) Pede para o cliente inserir uma entrada, capturada com os métodos de string
+4.2) Carregada para o buffer e mandada para o servidor com a informação dos 2 endereços e portas
+4.3) E espera pela resposta do servidor em casa negativo, enviar novamente.
+
+Fonte: https://www.programminglogic.com/sockets-programming-in-c-using-udp-datagrams/
+
