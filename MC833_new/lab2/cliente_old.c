@@ -9,19 +9,15 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <time.h>
 
 #define MAXLINE 4096
-#define MAXDATASIZE 100
 
 int main(int argc, char **argv) {
-   int    sockfd;
+   int    sockfd, n;
    char   recvline[MAXLINE + 1];
    char   error[MAXLINE + 1];
-   char   result;
    struct sockaddr_in servaddr;
    socklen_t len = sizeof(servaddr);
-   char   buf[MAXDATASIZE];
 
    if (argc != 2) {
       strcpy(error,"uso: ");
@@ -50,30 +46,21 @@ int main(int argc, char **argv) {
       perror("connect error");
       exit(1);
    }
-   getsockname(sockfd, (struct sockaddr *) &servaddr, &len);
-   printf("Server IP adress: %s\n", inet_ntoa(servaddr.sin_addr));
-   printf("Server port: %u\n", servaddr.sin_port);
-
    /* enquanto o servidor enviar linha nao vazia realiza a leitra, se nao EOF */
-   while ((len = recv(sockfd, buf, sizeof(buf), 0))) {     
-      
+   while ( (n = read(sockfd, recvline, MAXLINE)) > 0) {
+      recvline[n] = 0;
       if (fputs(recvline, stdout) == EOF) {
          perror("fputs error");
          exit(1);
-      }
+      }      
+      getsockname(sockfd, (struct sockaddr *) &servaddr, &len);
+      printf("Peer IP adress: %s\n", inet_ntoa(servaddr.sin_addr));
+      printf("Local port: %u\n", servaddr.sin_port);
+   } 
+   if (n < 0) {
+      perror("read error");
+      exit(1);
+   }
 
-      if(strcmp(buf, "exit\n") == 0){
-          time_t ticks = time(NULL);
-          snprintf(buf, sizeof(buf), "%.24s\n", ctime(&ticks));
-          fputs(buf, stdout);
-          send(sockfd, "Cliente encerrado.", sizeof(buf), 0);
-          exit(0);
-        }
-        //execl("/bin", buf, 0, 0);
-        if((result = system(buf)) == -1) {
-              perror("system error");
-        }
-        send(sockfd, buf, sizeof(buf), 0);
-      }     
    exit(0);
 }
