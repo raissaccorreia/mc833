@@ -49,28 +49,30 @@ int main(int argc, char **argv) {
    }
 
    /* enquanto o servidor enviar linha nao vazia realiza a leitra, se nao EOF */
-   while ( (n = read(sockfd, recvline, MAXLINE)) > 0) {
-      recvline[n] = 0;
-      if (fputs(recvline, stdout) == EOF) {
-         perror("fputs error");
-         exit(1);
-      }      
+   while (1) {
+      n = recv(sockfd, recvline, sizeof(recvline),0);
+      recvline[n] = '\0';            
       getsockname(sockfd, (struct sockaddr *) &servaddr, &len);
       printf("Peer IP adress: %s\n", inet_ntoa(servaddr.sin_addr));
       printf("Local port: %u\n", servaddr.sin_port);
       //lenda da entrada padrao
       scanf("%s", entrada);
       printf("Input do Clientee: %s\n", entrada);
+      if(strcmp(entrada, "exit") == 0){
+         printf("encerrando cliente!\n");
+         close(sockfd);
+         exit(1);
+      }
       //enviando ao servidor
       send(sockfd, entrada, sizeof(entrada), 0);
       //receba do servidor
       recv(sockfd, entrada, sizeof(entrada), 0);
       printf("%s\n", entrada);
+      
    } 
-   if (n < 0) {
+   if (n < 0) {      
       perror("read error");
       exit(1);
    }
-
    exit(0);
 }

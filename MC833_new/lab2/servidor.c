@@ -58,17 +58,25 @@ int main (int argc, char **argv) {
          perror("accept");
          exit(1);
       }
-      if( (pid = fork()) == 0) {
-         ticks = time(NULL);
-         snprintf(buf, sizeof(buf), "%.24s\r\n", ctime(&ticks));
-         write(connfd, buf, strlen(buf));
-         //recebendo do cliente
-         recv(connfd, entrada, sizeof(entrada), 0);
-         printf("%s\n", entrada);
-         //enviando de volta ao cliente
-         send(connfd, entrada, sizeof(entrada), 0);
-         //executando comando enviado pelo cliente
-         system(entrada);
+      if((pid = fork()) == 0) {
+         while(1){
+            //???
+            ticks = time(NULL);
+            snprintf(buf, sizeof(buf), "%.24s\r\n", ctime(&ticks));
+            write(connfd, buf, strlen(buf));
+            //recebendo do cliente
+            recv(connfd, entrada, sizeof(entrada), 0);
+            printf("%s\n", entrada);
+            if(strcmp(entrada, "quit") == 0){
+               printf("encerrando conexão com este cliente!\n");               
+               close(connfd);
+               exit(0);
+            }
+            //enviando de volta ao cliente
+            send(connfd, entrada, sizeof(entrada), 0);
+            //executando comando enviado pelo cliente
+            system(entrada);
+         }
          close(connfd); /* done with this client */
          exit(0);
       }
