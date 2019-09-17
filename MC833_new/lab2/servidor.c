@@ -21,6 +21,7 @@ int main (int argc, char **argv) {
    char   entrada[MAXLINE + 1];
    pid_t pid;
    time_t ticks;
+   FILE *log;
 
    /* checagem se o socket pode ser criado */
    if ((listenfd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
@@ -59,27 +60,42 @@ int main (int argc, char **argv) {
          exit(1);
       }
       if((pid = fork()) == 0) {
-         while(1){
-            //???
+         while(1){            
             ticks = time(NULL);
             snprintf(buf, sizeof(buf), "%.24s\r\n", ctime(&ticks));
             write(connfd, buf, strlen(buf));
+            
             //recebendo do cliente
             recv(connfd, entrada, sizeof(entrada), 0);
             printf("%s\n", entrada);
+
+            //escrevendo no log a conexao e a respectiva entrada, limpar a cada execucao
+            //a ordem é do mais recente para o mais antigo
+            log = fopen("log.txt", "a");
+            if(log == NULL)
+               printf("Erro, nao foi possivel abrir o arquivo\n");
+            else{
+               fprintf(log, "%s (IP = %s, Porta = %d) CONECTOU\n", entrada, ipstr, 8000);
+            }
+
+            //caso de encerramento da conexao a pedido do cliente
             if(strcmp(entrada, "quit") == 0){
-               printf("encerrando conexão com este cliente!\n");               
+               printf("encerrando conexão com este cliente!\n");
+               fprintf(log, "%s (IP = %s, Porta = %d) DESCONECTOU\n", buf, ipstr, 8000);                 
                close(connfd);
                exit(0);
             }
+
             //enviando de volta ao cliente
             send(connfd, entrada, sizeof(entrada), 0);
+
             //executando comando enviado pelo cliente
             system(entrada);
          }
+         fclose(log);
          close(connfd); /* done with this client */
          exit(0);
-      }
+      }      
       close(connfd);
    }
    return(0);
