@@ -1,0 +1,10 @@
+quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
+Tue Sep 17 15:59:37 2019
+ (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
+. (IP = 0.0.0.0, Porta = 8000) CONECTOU
+code (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
+Mon Sep 23 22:07:38 2019
+ (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
