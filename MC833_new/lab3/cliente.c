@@ -50,12 +50,12 @@ int main(int argc, char **argv) {
    }
 
    /* enquanto o servidor enviar linha nao vazia realiza a leitra, se nao EOF */
-   while (1) {
-      n = recv(sockfd, recvline, sizeof(recvline),0);
-      recvline[n] = '\0';            
+   while (1) {                
       getsockname(sockfd, (struct sockaddr *) &servaddr, &len);
       printf("Peer IP adress: %s\n", inet_ntoa(servaddr.sin_addr));
       printf("Local port: %u\n", servaddr.sin_port);
+      n = recv(sockfd, recvline, sizeof(recvline),0);
+      recvline[n] = '\0';  
       //lenda da entrada padrao
       scanf("%s", entrada);
       printf("Input do Clientee: %s\n", entrada);
@@ -69,7 +69,6 @@ int main(int argc, char **argv) {
       //receba do servidor
       recv(sockfd, entrada, sizeof(entrada), 0);
       printf("%s\n", entrada);
-      sleep(100);
    } 
    if (n < 0) {      
       perror("read error");

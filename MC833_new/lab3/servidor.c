@@ -53,7 +53,7 @@ int main (int argc, char **argv) {
    bzero(ipstr, 46);
    inet_ntop(AF_INET, &servaddr.sin_addr, ipstr, sizeof(ipstr));
    printf("Connection established successfully with %s:%i!\n", ipstr, ntohs(servaddr.sin_port));
-
+   sleep(10);
    for ( ; ; ) {
       /*obter dados e retirar da fila a 1ª conexao da fila de conexoes concluidas */
       if ((connfd = accept(listenfd, (struct sockaddr *) NULL, NULL)) == -1 ) {
