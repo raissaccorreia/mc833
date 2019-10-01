@@ -55,7 +55,7 @@ int main (int argc, char **argv) {
    bzero(ipstr, 46);
    inet_ntop(AF_INET, &servaddr.sin_addr, ipstr, sizeof(ipstr));
    printf("Connection established successfully with %s:%i!\n", ipstr, ntohs(servaddr.sin_port));
-   sleep(10);
+   // sleep(10);
    clock_t t;
    for ( ; ; ) {
       /*obter dados e retirar da fila a 1ª conexao da fila de conexoes concluidas */
@@ -89,18 +89,28 @@ int main (int argc, char **argv) {
                fprintf(log, "%s (IP = %s, Porta = %d) DESCONECTOU\n", buf, ipstr, 8000);                 
                close(connfd);
                exit(0);
+               break;
             }
 
             //enviando de volta ao cliente
             send(connfd, entrada, sizeof(entrada), 0);
 
             //executando comando enviado pelo cliente
-            system(entrada);
+            system(entrada);            
+
+            if(strcmp(entrada, "kill") == 0){            
+            /*matando processo zumbi */
+               kill(pid, SIGINT);
+               printf("ending zombie process"); 
+               wait(&stat); 
+               if (WIFSIGNALED(stat))
+                  psignal(WTERMSIG(stat), "Child term due to");
+               }
          }
          fclose(log);
          sleep(10); /*adicionado para lab3 item 2 */
          close(connfd); /* done with this client */
-         if((clock() - t)/CLOCK_PER_SEC > 10){            
+         if((double) (clock() - t) / CLOCKS_PER_SEC > 10){            
             /*matando processo zumbi */
             kill(pid, SIGINT); 
             wait(&stat); 

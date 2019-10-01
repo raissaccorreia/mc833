@@ -16,3 +16,21 @@ ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
 Tue Oct  1 15:43:12 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
+quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
+Tue Oct  1 16:27:54 2019
+ (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
+Tue Oct  1 16:35:03 2019
+ (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
+Tue Oct  1 16:38:42 2019
+ (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
+ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
