@@ -56,7 +56,6 @@ int main (int argc, char **argv) {
    inet_ntop(AF_INET, &servaddr.sin_addr, ipstr, sizeof(ipstr));
    printf("Connection established successfully with %s:%i!\n", ipstr, ntohs(servaddr.sin_port));
    // sleep(10);
-   clock_t t;
    for ( ; ; ) {
       /*obter dados e retirar da fila a 1ª conexao da fila de conexoes concluidas */
       if ((connfd = accept(listenfd, (struct sockaddr *) NULL, NULL)) == -1 ) {
@@ -72,7 +71,6 @@ int main (int argc, char **argv) {
             //recebendo do cliente
             recv(connfd, entrada, sizeof(entrada), 0);            
             printf("%s\n", entrada);
-            t = clock();
 
             //escrevendo no log a conexao e a respectiva entrada, limpar a cada execucao
             //a ordem é do mais recente para o mais antigo
@@ -109,14 +107,7 @@ int main (int argc, char **argv) {
          }
          fclose(log);
          sleep(10); /*adicionado para lab3 item 2 */
-         close(connfd); /* done with this client */
-         if((double) (clock() - t) / CLOCKS_PER_SEC > 10){            
-            /*matando processo zumbi */
-            kill(pid, SIGINT); 
-            wait(&stat); 
-            if (WIFSIGNALED(stat))
-               psignal(WTERMSIG(stat), "Child term due to");
-            }
+         close(connfd); /* done with this client */         
          exit(0);
       }
       close(connfd);     
