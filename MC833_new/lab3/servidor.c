@@ -9,13 +9,15 @@
 #include <time.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include<wait.h> 
+#include<signal.h>
 
 // #define LISTENQ 10
 #define MAXDATASIZE 100
 #define MAXLINE 4096
 
 int main (int argc, char **argv) {
-   int    listenfd, connfd, backlogSize; /*adicionado para lab3 item 2 */
+   int    listenfd, connfd, backlogSize, stat; /*adicionado para lab3 item 2 */
    struct sockaddr_in servaddr;
    char   buf[MAXDATASIZE];
    char   entrada[MAXLINE + 1];
@@ -97,7 +99,13 @@ int main (int argc, char **argv) {
          sleep(10); /*adicionado para lab3 item 2 */
          close(connfd); /* done with this client */
          exit(0);
-      }      
+      }   /*matando processo zumbi */     
+   //    else (SIGCHLD ) { 
+   //      kill(pid, SIGINT); 
+   //      wait(&stat); 
+   //      if (WIFSIGNALED(stat)) 
+   //          psignal(WTERMSIG(stat), "Child term due to"); 
+     }    
       close(connfd);
    }
    return(0);
