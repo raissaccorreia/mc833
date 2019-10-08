@@ -1,14 +1,14 @@
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
 #include <stdio.h>
-#include <netdb.h>
-#include <string.h>
+#include <stdlib.h>
 #include <errno.h>
 #include <string.h>
-#include <stdlib.h>
+#include <netdb.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <time.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #define MAXLINE 4096
 
@@ -19,6 +19,7 @@ int main(int argc, char **argv) {
    char   error[MAXLINE + 1];
    struct sockaddr_in servaddr;
    socklen_t len = sizeof(servaddr);
+   // FILE *log2;
 
    if (argc != 2) {
       strcpy(error,"uso: ");
@@ -55,7 +56,7 @@ int main(int argc, char **argv) {
       getsockname(sockfd, (struct sockaddr *) &servaddr, &len);
       printf("Peer IP adress: %s\n", inet_ntoa(servaddr.sin_addr));
       printf("Local port: %u\n", servaddr.sin_port);
-      //lenda da entrada padrao
+      //le da entrada padrao
       scanf("%s", entrada);
       printf("Input do Clientee: %s\n", entrada);
       if(strcmp(entrada, "exit") == 0){
@@ -68,11 +69,18 @@ int main(int argc, char **argv) {
       //receba do servidor
       recv(sockfd, entrada, sizeof(entrada), 0);
       printf("%s\n", entrada);
-      
+      // log2 = fopen("log2.txt", "w");
+      // if(log2 == NULL)
+      //    printf("Erro, nao foi possivel abrir o arquivo\n");
+      // else{
+      //    fprintf(log2, "%s\n", entrada);
+      // }  
    } 
    if (n < 0) {      
       perror("read error");
       exit(1);
    }
+   // fclose(log2);
    exit(0);
 }
+ 

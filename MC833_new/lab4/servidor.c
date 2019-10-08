@@ -85,12 +85,8 @@ int main (int argc, char **argv) {
                close(connfd);
                exit(0);
             }
-
             //enviando de volta ao cliente
             send(connfd, entrada, sizeof(entrada), 0);
-
-            //executando comando enviado pelo cliente
-            system(entrada);
          }
          fclose(log);
          close(connfd); /* done with this client */
