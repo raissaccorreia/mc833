@@ -13,7 +13,7 @@
 #define MAXLINE 4096
 
 int main(int argc, char **argv) {
-   int    sockfd, n, i;
+   int    sockfd, n, i=1;
    char   recvline[MAXLINE + 1];
    char   entrada[MAXLINE + 1];
    char   error[MAXLINE + 1];
@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
    }
 
    /* enquanto o servidor enviar linha nao vazia realiza a leitra, se nao EOF */
-   for (i=0;i<=5;i++) {
+   for ( ; ; ) {
       n = recv(sockfd, recvline, sizeof(recvline),0);
       recvline[n] = '\0';
       getsockname(sockfd, (struct sockaddr *) &servaddr, &len);
@@ -62,6 +62,7 @@ int main(int argc, char **argv) {
       if(strcmp(entrada, "exit") == 0){
          printf("encerrando cliente!\n");
          close(sockfd);
+         i = 0;
          exit(1);
       }
       //enviando ao servidor
