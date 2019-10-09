@@ -1,82 +1,44 @@
+
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:12:50 2019
+Wed Oct  9 12:20:31 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:14:00 2019
+Wed Oct  9 12:21:05 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:14:22 2019
+Wed Oct  9 12:25:44 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:16:49 2019
+Wed Oct  9 12:25:48 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:18:16 2019
+Wed Oct  9 12:26:39 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:18:46 2019
+Wed Oct  9 12:29:01 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:19:10 2019
+Wed Oct  9 13:04:18 2019
  (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:21:46 2019
- (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:24:50 2019
- (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:25:12 2019
- (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:25:25 2019
- (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:27:16 2019
- (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:36:05 2019
- (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
-quit (IP = 0.0.0.0, Porta = 8000) CONECTOU
-Mon Oct  7 22:38:35 2019
- (IP = 0.0.0.0, Porta = 8000) DESCONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
 ls (IP = 0.0.0.0, Porta = 8000) CONECTOU
