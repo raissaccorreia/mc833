@@ -69,6 +69,8 @@ int main(int argc, char **argv) {
        if(fgets(message, MAXLINE, stdin) != NULL){
          write(sockfd, message, strlen(message));
        } else if(feof(stdin)){
+         close(sockfd);
+         exit(1);
          shutdown(sockfd, SHUT_WR);
          return 0;
        }

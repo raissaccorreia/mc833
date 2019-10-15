@@ -66,28 +66,3 @@ int main (int argc, char **argv) {
    }
    return(0);
 }
-
-/* Parte desativada: usada para imprimir IP e porta do servidor nas atividades anteriores
-   char ipstr[INET6_ADDRSTRLEN];
-   bzero(ipstr, 46);
-   inet_ntop(AF_INET, &servaddr.sin_addr, ipstr, sizeof(ipstr));
-   printf("Connection established successfully with %s:%i!\n", ipstr, ntohs(servaddr.sin_port)); */
-
-   //escrevendo no log a conexao e a respectiva entrada, limpar a cada execucao
-            //a ordem é do mais recente para o mais antigo
-            /*log = fopen("log.txt", "a");
-            if(log == NULL)
-               printf("Erro, nao foi possivel abrir o arquivo\n");
-            else{
-               fprintf(log, "%s (IP = %s, Porta = %d) CONECTOU\n", entrada, ipstr, 8000);
-            } */
-
-/* desativado impressao de encerramento de conexão
-               printf("encerrando conexão com este cliente!\n");
-               fprintf(log, "%s (IP = %s, Porta = %d) DESCONECTOU\n", buf, ipstr, 8000); */
-
-               //ticks = time(NULL);
-            //snprintf(buf, sizeof(buf), "%.24s\r\n", ctime(&ticks));
-
-
-   //time_t ticks;
