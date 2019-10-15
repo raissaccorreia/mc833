@@ -56,7 +56,6 @@ int main (int argc, char **argv) {
                exit(0);
             }
             //enviando de volta ao cliente
-            printf("%s\n", entrada);
             send(connfd, entrada, sizeof(entrada), 0);
          }
          // done with this client
