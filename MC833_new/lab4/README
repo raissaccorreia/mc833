@@ -1,0 +1,6 @@
+- Compilar apenas com o comando make
+- Esta implementada a flag -Wall e apenas ela
+- No servidor deve ser passada a porta 
+./servidor 8000 por exemplo
+- No cliente tanto o ip quanto a porta deve ser passada 
+./cliente 127.0.0.1 8000 Porta identica a do servidor obviamente.
